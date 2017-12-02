@@ -61,7 +61,6 @@ public class ReadRules {
 	}
 
 	public void saveRules(JTextArea area, JTextArea weight) {
-		// ArrayList<String> values = new ArrayList<>();
 		java.util.List<String> rules;
 		java.util.List<String> values;
 		HashMap<String, Integer> rulesMap = new HashMap<String, Integer>();

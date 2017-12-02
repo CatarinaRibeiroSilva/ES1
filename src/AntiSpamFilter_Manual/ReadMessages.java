@@ -1,6 +1,5 @@
 package AntiSpamFilter_Manual;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,8 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 import javax.swing.JTextArea;
-
-
 
 public class ReadMessages {
 
@@ -46,7 +43,6 @@ public class ReadMessages {
 		return allMessageSPAM;
 	}
 
-
 	public static List<List<String>> lerHam(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(fileName));
 		allMessageHam = new ArrayList<List<String>>();
@@ -73,7 +69,6 @@ public class ReadMessages {
 		for (int n = 0; n < allMessageSPAM.size(); n++) {
 			soma = 0;
 			for (int i = 1; i < allMessageSPAM.get(n).size(); i++) {
-				// System.out.println(allMessage.get(n).get(i).toString());
 				soma = getValueOfMap(readRulesAndValues(), allMessageSPAM.get(n).get(i)) + soma;
 
 			}
@@ -133,9 +128,6 @@ public class ReadMessages {
 		} finally {
 			scanner.close();
 		}
-		// for(Map.Entry<String, Integer> r : map.entrySet()) {
-		// //System.out.println(r.getKey()+ " " +r.getValue());
-		// }
 		return map;
 	}
 
@@ -148,5 +140,3 @@ public class ReadMessages {
 	}
 
 }
-
-

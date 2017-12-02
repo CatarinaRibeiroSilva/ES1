@@ -26,7 +26,7 @@ public class LogicClass {
 		inter.setSpamTextField(spamPath);
 		inter.setHamTextField(hamPath);
 		inter.setRulesTextField(rulesPath);
-		this.rulesPath = rulesPath;
+		this.setRulesPath(rulesPath);
 		messagesReader = new ReadMessages();
 		messagesReader.setRulesPath(rulesPath);
 		rules = new ReadRules(rulesPath);
@@ -79,7 +79,6 @@ public class LogicClass {
 						spamToInterface(area);
 
 					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -94,7 +93,6 @@ public class LogicClass {
 									"Numeros de Falsos Negativos : " + messagesReader.getFN());
 
 						} catch (FileNotFoundException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} else if (CheckButoes.equals("Ham")) {
@@ -105,7 +103,6 @@ public class LogicClass {
 							JOptionPane.showMessageDialog(frameDeResultado(),
 									"Numeros de Falsos Positivos : " + messagesReader.getFP());
 						} catch (FileNotFoundException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -140,19 +137,13 @@ public class LogicClass {
 	}
 
 	public void hamToInterface(JTextArea area) throws FileNotFoundException {
-		SH_message = ReadMessages.lerHam(inter.getHamTextField());
-		for (int i = 0; i < SH_message.size(); i++) {
-			area.append(SH_message.get(i).get(0).toString() + "\n");
-		}
+		setSH_message(ReadMessages.lerHam(inter.getHamTextField()));
 
 	}
 
 	public void spamToInterface(JTextArea area) throws FileNotFoundException {
 
-		SH_message = ReadMessages.lerSpam(inter.getspamTextField());
-		for (int i = 0; i < SH_message.size(); i++) {
-			area.append(SH_message.get(i).get(0).toString() + "\n");
-		}
+		setSH_message(ReadMessages.lerSpam(inter.getspamTextField()));
 	}
 
 	public GraficInterface getInter() {
@@ -170,6 +161,22 @@ public class LogicClass {
 	public void setRules(ReadRules rules) {
 		this.rules = rules;
 
+	}
+
+	public String getRulesPath() {
+		return rulesPath;
+	}
+
+	public void setRulesPath(String rulesPath) {
+		this.rulesPath = rulesPath;
+	}
+
+	public List<List<String>> getSH_message() {
+		return SH_message;
+	}
+
+	public void setSH_message(List<List<String>> sH_message) {
+		SH_message = sH_message;
 	}
 
 }
