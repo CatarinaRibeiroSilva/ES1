@@ -19,9 +19,7 @@ import javax.swing.JTextArea;
 public class ReadRules {
 	private Random random = new Random();
 	private String rulesPath = " ";
-
 	private HashMap<String, Integer> rulesMap;
-
 	private FileReader fileReader;
 
 	public ReadRules(String rulesPath) {
@@ -61,8 +59,7 @@ public class ReadRules {
 		}
 		return rulesMap;
 	}
-	
-	
+
 	public void saveRules(JTextArea area, JTextArea weight) {
 		// ArrayList<String> values = new ArrayList<>();
 		java.util.List<String> rules;
@@ -77,10 +74,8 @@ public class ReadRules {
 			rulesMap.put(rule, value);
 		}
 
-		try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-				new FileOutputStream(
-						"D:\\userdata\\kandrade\\Desktop\\ETI_2017-2018\\ES1\\27112017\\InterfaceGráfica\\src\\rules.cf"),
-				"utf-8"))) {
+		try (BufferedWriter writer = new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(rulesPath), "utf-8"))) {
 			for (Map.Entry<String, Integer> map : rulesMap.entrySet()) {
 				String chave = map.getKey();
 				int valor = map.getValue();
@@ -97,7 +92,6 @@ public class ReadRules {
 		}
 
 	}
-	
 
 	public String getRulesPath() {
 		return rulesPath;

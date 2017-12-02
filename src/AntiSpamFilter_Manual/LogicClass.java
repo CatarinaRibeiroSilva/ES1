@@ -1,9 +1,175 @@
 package AntiSpamFilter_Manual;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 public class LogicClass {
 
-	public LogicClass() {
-		// Toda a logica
+	private HashMap<String, Integer> rulesMap;
+	private List<List<String>> SH_message;
+	private String CheckButoes;
+	private GraficInterface inter = new GraficInterface();
+	private ReadMessages messagesReader = null;
+	private ReadRules rules = null;
+	private String rulesPath = " ";
+
+	public LogicClass(String spamPath, String hamPath, String rulesPath) {
+		inter.setSpamTextField(spamPath);
+		inter.setHamTextField(hamPath);
+		inter.setRulesTextField(rulesPath);
+		this.rulesPath = rulesPath;
+		messagesReader = new ReadMessages();
+		messagesReader.setRulesPath(rulesPath);
+		rules = new ReadRules(rulesPath);
+	}
+
+	public void actionForButton(JButton button, JTextArea area, JTextArea weightArea) {
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (button.getText().equals("Open Rules file")) {
+					weightArea.setEditable(true);
+					area.selectAll();
+					area.replaceSelection("");
+					weightArea.selectAll();
+					weightArea.replaceSelection("");
+					CheckButoes = "Rules";
+					rulesToInterface(area, weightArea);
+				}
+
+				if (button.getText().equals("Gravar")) {
+					if (CheckButoes.equals("Rules")) {
+						System.out.println("Valores guardados");
+
+						rules.saveRules(area, weightArea);
+					}
+				}
+
+				if (button.getText().equals("Open Ham file")) {
+					area.selectAll();
+					area.replaceSelection("");
+					weightArea.selectAll();
+					weightArea.replaceSelection("");
+					CheckButoes = "Ham";
+					try {
+						hamToInterface(area);
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+				}
+
+				if (button.getText().equals("Open Spam file")) {
+					area.selectAll();
+					area.replaceSelection("");
+					weightArea.selectAll();
+					weightArea.replaceSelection("");
+					CheckButoes = "Spam";
+					try {
+						spamToInterface(area);
+
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+
+				if (button.getText().equals("Validar")) {
+					if (CheckButoes.equals("Spam")) {
+						try {
+							weightArea.setEditable(false);
+							messagesReader.calcularFN(weightArea);
+
+							JOptionPane.showMessageDialog(frameDeResultado(),
+									"Numeros de Falsos Negativos : " + messagesReader.getFN());
+
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} else if (CheckButoes.equals("Ham")) {
+						try {
+							weightArea.setEditable(false);
+							messagesReader.calcularFP(weightArea);
+
+							JOptionPane.showMessageDialog(frameDeResultado(),
+									"Numeros de Falsos Positivos : " + messagesReader.getFP());
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+
+				}
+
+				area.updateUI();
+				area.repaint();
+			}
+
+		});
+
+	}
+
+	public JFrame frameDeResultado() {
+		JFrame frame = new JFrame("Message");
+		frame.setSize(600, 500);
+		frame.setResizable(false);
+		frame.setLocation(100, 100);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		return frame;
+	}
+
+	private void rulesToInterface(JTextArea area, JTextArea weightArea) {
+		rulesMap = rules.Read(inter.getrulesTextField());
+		for (Map.Entry<String, Integer> map : rulesMap.entrySet()) {
+			String chave = map.getKey();
+			int peso = map.getValue();
+			area.append(chave + "\n");
+			weightArea.append(peso + "\n");
+		}
+	}
+
+	public void hamToInterface(JTextArea area) throws FileNotFoundException {
+		SH_message = ReadMessages.lerHam(inter.getHamTextField());
+		for (int i = 0; i < SH_message.size(); i++) {
+			area.append(SH_message.get(i).get(0).toString() + "\n");
+		}
+
+	}
+
+	public void spamToInterface(JTextArea area) throws FileNotFoundException {
+
+		SH_message = ReadMessages.lerSpam(inter.getspamTextField());
+		for (int i = 0; i < SH_message.size(); i++) {
+			area.append(SH_message.get(i).get(0).toString() + "\n");
+		}
+	}
+
+	public GraficInterface getInter() {
+		return inter;
+	}
+
+	public void setInter(GraficInterface inter) {
+		this.inter = inter;
+	}
+
+	public ReadRules getRules() {
+		return rules;
+	}
+
+	public void setRules(ReadRules rules) {
+		this.rules = rules;
+
 	}
 
 }
