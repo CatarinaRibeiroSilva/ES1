@@ -1,14 +1,21 @@
 package AntiSpamFilter_Manual;
 
+import java.io.File;
+
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
-		String spamPath = "C:\\Users\\Keven\\Desktop\\4ºAno\\InterfaceGráfica (2)\\InterfaceGráfica\\src\\spam.log";
-		String hamPath = "C:\\Users\\Keven\\Desktop\\4ºAno\\InterfaceGráfica (2)\\InterfaceGráfica\\src\\ham.log";
-		String rulesPath = "C:\\Users\\Keven\\Desktop\\4ºAno\\InterfaceGráfica (2)\\InterfaceGráfica\\src\\rules.cf";
+		        
+		String spamPath = "files\\spam.log" ;
+		String hamPath = "files\\ham.log";
+		String rulesPath = "files\\rules.cf";
 		LogicClass l = new LogicClass(spamPath, hamPath, rulesPath);
 		GraficInterface i = l.getInter();
 		JButton b1 = i.getRulesButton();

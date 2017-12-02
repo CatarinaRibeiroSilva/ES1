@@ -3,8 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -50,7 +50,7 @@ public class GraficInterface {
 
 			gridPanelForButtons.add(pathToHamButton);
 			gridPanelForButtons.add(pathToSpamButton);
-
+			
 			JPanel linkAndButton = new JPanel(new BorderLayout());
 			linkAndButton.add(gridPanelForTexts, BorderLayout.CENTER);
 			linkAndButton.add(gridPanelForButtons, BorderLayout.EAST);
