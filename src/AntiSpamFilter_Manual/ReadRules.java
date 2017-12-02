@@ -1,12 +1,20 @@
 package AntiSpamFilter_Manual;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+
+import javax.swing.JTextArea;
 
 public class ReadRules {
 	private Random random = new Random();
@@ -53,6 +61,43 @@ public class ReadRules {
 		}
 		return rulesMap;
 	}
+	
+	
+	public void saveRules(JTextArea area, JTextArea weight) {
+		// ArrayList<String> values = new ArrayList<>();
+		java.util.List<String> rules;
+		java.util.List<String> values;
+		HashMap<String, Integer> rulesMap = new HashMap<String, Integer>();
+		rules = Arrays.asList(area.getText().split("\n"));
+		values = Arrays.asList(weight.getText().split("\n"));
+
+		for (int i = 0; i < rules.size(); i++) {
+			int value = Integer.parseInt(values.get(i));
+			String rule = rules.get(i);
+			rulesMap.put(rule, value);
+		}
+
+		try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream(
+						"D:\\userdata\\kandrade\\Desktop\\ETI_2017-2018\\ES1\\27112017\\InterfaceGráfica\\src\\rules.cf"),
+				"utf-8"))) {
+			for (Map.Entry<String, Integer> map : rulesMap.entrySet()) {
+				String chave = map.getKey();
+				int valor = map.getValue();
+				writer.write(chave + "	" + valor);
+				writer.newLine();
+			}
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 
 	public String getRulesPath() {
 		return rulesPath;
