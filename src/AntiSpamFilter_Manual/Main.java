@@ -1,13 +1,7 @@
 package AntiSpamFilter_Manual;
 
-import java.io.File;
-
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main {
 	
