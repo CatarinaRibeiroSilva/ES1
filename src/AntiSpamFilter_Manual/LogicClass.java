@@ -1,8 +1,8 @@
 package AntiSpamFilter_Manual;
 
-public class WeightCalculation {
+public class LogicClass {
 
-	public WeightCalculation() {
+	public LogicClass() {
 		// Toda a logica
 	}
 
