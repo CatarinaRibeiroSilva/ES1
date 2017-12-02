@@ -100,9 +100,58 @@ public class GraficInterface {
 			janela.add(menu);
 			janela.add(eastPanel, BorderLayout.SOUTH);
 			janela.setVisible(true);
-
-		
-
 		}
 
-	}	
+		public JButton getRulesButton() {
+			return pathToRulesButton;
+		}
+
+		public JButton getHamButton() {
+			return pathToHamButton;
+		}
+
+		public JButton getSpamButton() {
+			return pathToSpamButton;
+		}
+
+		public JTextArea getareaForfiles() {
+			return areaForLink;
+		}
+
+		public JTextArea getAreaForWeight() {
+			return areaForWeight;
+		}
+
+		public JButton getGravarButton() {
+			return buttonGravar;
+		}
+
+		public JButton getValidarButton() {
+			return buttonValidar;
+		}
+
+		public String getspamTextField() {
+			return spamTextField.getText();
+		}
+
+		public String getHamTextField() {
+			return hamTextField.getText();
+		}
+
+		public String getrulesTextField() {
+			return rulesTextField.getText();
+		}
+
+		public void setSpamTextField(String spamTextField) {
+			this.spamTextField.setText(spamTextField);
+		}
+
+		public void setHamTextField(String hamTextField) {
+			this.hamTextField.setText(hamTextField);
+		}
+
+		public void setRulesTextField(String rulesTextField) {
+			this.rulesTextField.setText(rulesTextField);
+		}
+
+}	
