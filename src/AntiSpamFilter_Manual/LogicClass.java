@@ -2,12 +2,15 @@ package AntiSpamFilter_Manual;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -17,22 +20,14 @@ public class LogicClass {
 	private HashMap<String, Integer> rulesMap;
 	private List<List<String>> SH_message;
 	private String CheckButoes;
-	private GraficInterface inter = new GraficInterface();
 	private ReadMessages messagesReader = null;
 	private ReadRules rules = null;
-	private String rulesPath = " ";
 
-	public LogicClass(String spamPath, String hamPath, String rulesPath) {
-		inter.setSpamTextField(spamPath);
-		inter.setHamTextField(hamPath);
-		inter.setRulesTextField(rulesPath);
-		this.setRulesPath(rulesPath);
-		messagesReader = new ReadMessages();
-		messagesReader.setRulesPath(rulesPath);
-		rules = new ReadRules(rulesPath);
-	}
 
-	public void actionForButton(JButton button, JTextArea area, JTextArea weightArea) {
+	public LogicClass() {
+		
+		
+	/* actionForButton(JButton button, JTextArea area, JTextArea weightArea) {
 		button.addActionListener(new ActionListener() {
 
 			@Override
@@ -127,7 +122,7 @@ public class LogicClass {
 	}
 
 	private void rulesToInterface(JTextArea area, JTextArea weightArea) {
-		rulesMap = rules.Read(inter.getrulesTextField());
+	//	rulesMap = rules.Read(inter.getrulesTextField());
 		for (Map.Entry<String, Integer> map : rulesMap.entrySet()) {
 			String chave = map.getKey();
 			int peso = map.getValue();
@@ -137,13 +132,13 @@ public class LogicClass {
 	}
 
 	public void hamToInterface(JTextArea area) throws FileNotFoundException {
-		setSH_message(ReadMessages.lerHam(inter.getHamTextField()));
+		//setSH_message(ReadMessages.lerHam(inter.getHamTextField()));
 
 	}
 
 	public void spamToInterface(JTextArea area) throws FileNotFoundException {
 
-		setSH_message(ReadMessages.lerSpam(inter.getspamTextField()));
+		//setSH_message(ReadMessages.lerSpam(inter.getspamTextField()));
 	}
 
 	public GraficInterface getInter() {
@@ -177,6 +172,14 @@ public class LogicClass {
 
 	public void setSH_message(List<List<String>> sH_message) {
 		SH_message = sH_message;
+	}*/
 	}
-
+	
+	public  File getFile() throws IOException{	
+		JFileChooser chooser = new JFileChooser();
+		int returnVal = chooser.showOpenDialog(new JFrame());
+		return chooser.getSelectedFile();
+	}
 }
+
+

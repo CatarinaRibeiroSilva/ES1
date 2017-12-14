@@ -7,12 +7,12 @@ public class Main {
 	
 	public static void main(String[] args) {
 		        
-		String spamPath = "files\\spam.log" ;
-		String hamPath = "files\\ham.log";
-		String rulesPath = "files\\rules.cf";
-		LogicClass l = new LogicClass(spamPath, hamPath, rulesPath);
-		GraficInterface i = l.getInter();
-		JButton b1 = i.getRulesButton();
+		//String spamPath = "files\\spam.log" ;
+		//String hamPath = "files\\ham.log";
+		//String rulesPath = "files\\rules.cf";
+		LogicClass l = new LogicClass();
+		GraficInterface i =  new GraficInterface();	
+		/*JButton b1 = i.getRulesButton();
 		JButton b2 = i.getHamButton();
 		JButton b3 = i.getSpamButton();
 		JButton validar = i.getValidarButton();
@@ -23,7 +23,7 @@ public class Main {
 		l.actionForButton(b2, a, b);
 		l.actionForButton(b3, a, b);
 		l.actionForButton(gravar, a, b);
-		l.actionForButton(validar, a, b);
+		l.actionForButton(validar, a, b);*/
 
 	}
 
