@@ -155,7 +155,7 @@ public class GraficInterface {
 				panelForTextAreaAuto.setSize(200, 200);
 				panelForTextAreaAuto.add(scrollAuto, BorderLayout.CENTER);
 				 
-				buttonValidarAuto = new JButton("Validar");
+				buttonValidarAuto = new JButton("Gerar");
 				buttonGravarAuto = new JButton("Gravar");
 				JPanel buttonsPanelAuto = new JPanel(new GridLayout(1,2));
 				buttonsPanelAuto.add(buttonValidarAuto);
@@ -173,8 +173,8 @@ public class GraficInterface {
 			janela.setLocation(100, 100);
 			janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			janela.add(pathAndButton, BorderLayout.NORTH);
-			janela.add( PanelManualAll, BorderLayout.EAST);
-			janela.add(PanelAutoAll, BorderLayout.WEST);
+			janela.add( PanelManualAll, BorderLayout.WEST);
+			janela.add(PanelAutoAll, BorderLayout.EAST);
 			janela.setVisible(true);
 
 		
