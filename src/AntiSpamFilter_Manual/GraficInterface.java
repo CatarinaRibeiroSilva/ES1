@@ -79,7 +79,7 @@ public class GraficInterface {
 
 		// ManualMode  
 		areaManual = new JTextArea();
-	
+
 		areaManual.setEditable(false);
 		areaManual.setBackground(Color.WHITE);
 
@@ -235,7 +235,7 @@ public class GraficInterface {
 
 			}
 		});
-		
+
 		buttonValidar.addActionListener(new ActionListener() {
 
 			@Override
@@ -243,8 +243,8 @@ public class GraficInterface {
 				try {
 					if(!hamTextField.getText().equals(""))
 						System.out.println("É NULLK");
-						readMessages.calcularFP(FPresult);
-						
+					readMessages.calcularFP(FPresult);
+
 					if(!spamTextField.getText().equals("")) {
 						System.out.println("SPAM FDP");
 						readMessages.calcularFN(FNresult);
@@ -255,8 +255,16 @@ public class GraficInterface {
 
 			}
 		});
+		
+		buttonGravar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				readRules.WriterRules(areaManual, weightManual, readRules.getRulesPath());
+			}
+		});
 
 	}
+	
 
 
 
