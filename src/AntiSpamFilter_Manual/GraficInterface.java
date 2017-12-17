@@ -45,6 +45,8 @@ public class GraficInterface {
 	private HashMap<String, String> rules;
 	private ReadMessages readMessages = new ReadMessages();
 
+	public static String rulesPath;
+
 	public GraficInterface() {
 		JFrame janela = new JFrame("Spam Filter Manual");
 
@@ -94,7 +96,7 @@ public class GraficInterface {
 		p.setSize(200, 200);
 		p.add(pane);
 
-		JLabel FP = new JLabel("Faldos Positivos:");
+		JLabel FP = new JLabel("Falsos Positivos:");
 		JTextField FPresult = new JTextField();
 		FPresult.setBackground(Color.WHITE);
 		FPresult.setEditable(false);
@@ -193,7 +195,7 @@ public class GraficInterface {
 					spamTextField.setEditable(false);
 					String path = logic.getFile().getAbsolutePath();
 					spamTextField.setText(path);
-					readMessages.lerHam(path);
+					readMessages.lerSpam(path);
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -232,14 +234,20 @@ public class GraficInterface {
 
 			}
 		});
-
+		
 		buttonValidar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					readMessages.calcularFN(FNresult);
-					readMessages.calcularFP(FPresult);
+					if(!hamTextField.getText().equals(""))
+						System.out.println("É NULLK");
+						readMessages.calcularFP(FPresult);
+						
+					if(!spamTextField.getText().equals("")) {
+						System.out.println("SPAM FDP");
+						readMessages.calcularFN(FNresult);
+					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -249,7 +257,7 @@ public class GraficInterface {
 
 	}
 
-	
+
 
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {
@@ -259,4 +267,5 @@ public class GraficInterface {
 			area2.append(map.getValue().toString() + "\n");
 		}
 	}
+
 }

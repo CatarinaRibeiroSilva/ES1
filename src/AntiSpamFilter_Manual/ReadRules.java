@@ -21,11 +21,12 @@ public class ReadRules {
 	private HashMap<String, String> rulesMap;
 	public ArrayList<String> rulesList = new ArrayList<String>();
 	public ArrayList<String> weightList = new ArrayList<String>();
-	
+	private static String rulesPath;
 	
 	
 	public HashMap<String, String> read(String path) throws FileNotFoundException {
-			String line;
+		rulesPath= path;	
+		String line;
 			FileReader reader = new FileReader(path);
 			rulesMap = new HashMap<String, String>();
 			BufferedReader in= new BufferedReader(reader);		
@@ -79,6 +80,10 @@ public class ReadRules {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public String getRulesPath() {
+		return rulesPath;
 	}
 
 }

@@ -14,7 +14,7 @@ public class ReadMessages {
 
 	private List<String> message = null;
 	public  List<List<String>> allMessageSPAM;
-	public  List<List<String>> allMessageHam;;
+	public  List<List<String>> allMessageHam;
 	private String rulesPath = " ";
 	private int FP;
 	private int FN;
@@ -62,13 +62,14 @@ public class ReadMessages {
 	public void calcularFN(JTextField tx) throws FileNotFoundException {
 		FN = 0;
 		int soma;
+		
 		for (int n = 0; n < allMessageSPAM.size(); n++) {
 			soma = 0;
 			for (int i = 1; i < allMessageSPAM.get(n).size(); i++) {
 				soma = getValueOfMap(readRulesAndValues(), allMessageSPAM.get(n).get(i)) + soma;
 
 			}
-
+			
 			if (soma < 5) {
 				FN++;
 			}
@@ -80,7 +81,7 @@ public class ReadMessages {
 
 	public void calcularFP(JTextField tx) throws FileNotFoundException {
 		FP = 0;
-
+		System.out.println("maasassas" + allMessageHam.size());
 		for (int n = 0; n < allMessageHam.size(); n++) {
 			int soma = 0;
 			for (int i = 1; i < allMessageHam.get(n).size(); i++) {
@@ -115,7 +116,9 @@ public class ReadMessages {
 
 	public HashMap<String, Integer> readRulesAndValues() throws FileNotFoundException {
 		HashMap<String, Integer> map = new HashMap<>();
-		Scanner scanner = new Scanner(new File(rulesPath));
+		ReadRules rRules = new ReadRules();
+		
+		Scanner scanner = new Scanner(new File(rRules.getRulesPath()));
 		try {
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
