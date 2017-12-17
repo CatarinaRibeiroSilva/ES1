@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,10 +26,10 @@ public class GraficInterface {
 		private JButton buttonGravar;
 		private JButton buttonValidarAuto;
 		private JButton buttonGravarAuto;
-		private JTextArea areaManual;
-		private JTextArea weightManual;
-		private JTextArea areaAuto;
-		private JTextArea weigthtAuto;
+		public JTextArea areaManual;
+		public JTextArea weightManual;
+		public JTextArea areaAuto;
+		public JTextArea weigthtAuto;
 		
 		//Paths
 		public JButton pathToSpamButton;
@@ -37,6 +39,8 @@ public class GraficInterface {
 		public JTextField hamTextField;
 		public JTextField rulesTextField;
 		public LogicClass logic = new LogicClass();
+		public ReadRules readRules= new ReadRules();
+		private HashMap<String, String> rules;
 		
 
 		public GraficInterface() {
@@ -78,7 +82,7 @@ public class GraficInterface {
 			areaManual.setBackground(Color.WHITE);
 			
 			weightManual = new JTextArea();
-			weightManual.setEditable(false);
+			weightManual.setEditable(true);
 			weightManual.setBackground(Color.WHITE);
 			
 			JSplitPane pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -86,11 +90,16 @@ public class GraficInterface {
 			pane.setDividerLocation(200);
 			pane.setLeftComponent(areaManual);
 			pane.setRightComponent(weightManual);
-
+			
+		
 			JLabel FP = new JLabel("Faldos Positivos:");
 			JTextField FPresult = new JTextField();
+			FPresult.setBackground(Color.WHITE);
+			FPresult.setEditable(false);
 			JLabel FN = new JLabel("Falsos Negativos:");
 			JTextField FNresult = new JTextField();	
+			FNresult.setBackground(Color.WHITE);
+			FNresult.setEditable(false);
 			
 			JPanel FResultes = new JPanel(new GridLayout(2,2));
 			FResultes.add(FP);
@@ -125,8 +134,8 @@ public class GraficInterface {
 			 areaAuto.setEditable(false);
 			 areaAuto.setBackground(Color.WHITE);
 				
-			 weigthtAuto = new JTextArea();
-				weigthtAuto.setEditable(false);
+			 	weigthtAuto = new JTextArea();
+				weigthtAuto.setEditable(true);
 				weigthtAuto.setBackground(Color.WHITE);
 				
 				JSplitPane paneAuto = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -137,8 +146,12 @@ public class GraficInterface {
 
 				JLabel FPAuto = new JLabel("Faldos Positivos:");
 				JTextField FPresultAuto = new JTextField();
+				FPresultAuto.setBackground(Color.WHITE);
+				FPresultAuto.setEditable(false);
 				JLabel FNAuto = new JLabel("Falsos Negativos:");
 				JTextField FNresultAuto = new JTextField();	
+				FNresultAuto.setBackground(Color.WHITE);
+				FNresultAuto.setEditable(false);
 				
 				JPanel FResultesAuto = new JPanel(new GridLayout(2,2));
 				FResultesAuto.add(FPAuto);
@@ -182,7 +195,7 @@ public class GraficInterface {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					spamTextField.setEditable(true);
+					spamTextField.setEditable(false);
 					spamTextField.setText(logic.getFile().getAbsolutePath());
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -194,7 +207,7 @@ public class GraficInterface {
 		pathToHamButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				try {hamTextField.setEditable(true);
+				try {hamTextField.setEditable(false);
 				hamTextField.setText(logic.getFile().getAbsolutePath());
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -208,13 +221,24 @@ public class GraficInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					rulesTextField.setEditable(true);
-					rulesTextField.setText(logic.getFile().getAbsolutePath());
+					String path = logic.getFile().getAbsolutePath();
+					rulesTextField.setText(path);
+					rules = readRules.read(path);
+					print(areaManual, weightManual);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				
 			}
 		});
-		
+	}
+
+		public void print(JTextArea area1, JTextArea area2) {
+			for (Map.Entry<String, String> map : rules.entrySet()) {
+			area1.setEditable(true);
+			area1.append(map.getKey().toString() + "\n");
+			area1.setEditable(false);
+			area2.append(map.getValue().toString() + "\n");
+			}
 		}
 }	

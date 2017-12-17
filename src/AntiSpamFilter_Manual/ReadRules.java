@@ -18,49 +18,38 @@ import javax.swing.JTextArea;
 
 public class ReadRules {
 	private Random random = new Random();
-	private String rulesPath = " ";
-	private HashMap<String, Integer> rulesMap;
-	private FileReader fileReader;
-
-	public ReadRules(String rulesPath) {
-		setRulesPath(rulesPath);
-
-	}
-
-	public HashMap<String, Integer> Read(String path) {
-		ArrayList<String> listaRules = new ArrayList<>();
-		rulesMap = new HashMap<String, Integer>();
-
-		String line = null;
-
-		try {
-
+	private HashMap<String, String> rulesMap;
+	public ArrayList<String> rulesList = new ArrayList<String>();
+	public ArrayList<String> weightList = new ArrayList<String>();
+	
+	
+	
+	public HashMap<String, String> read(String path) throws FileNotFoundException {
+			String line;
+			FileReader reader = new FileReader(path);
+			rulesMap = new HashMap<String, String>();
+			BufferedReader in= new BufferedReader(reader);		
 			try {
-				fileReader = new FileReader(path);
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
+				while ((line = in.readLine()) != null) {
+					String[] tokens = line.split("	");
+					String rule = tokens[0];
+					String weight = tokens[1];
+				
+					rulesMap.put(rule,weight);
+				}
+				
+				in.close();
+			} catch (FileNotFoundException ex) {
+				System.out.println("Unable to open file '" + "'");
+			} catch (IOException ex) {
+				System.out.println("Error reading file '");
+
 			}
-
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-			while ((line = bufferedReader.readLine()) != null) {
-				String[] tokens = line.split("	");
-				listaRules.add(tokens[0]);
-				int weigth = random.nextInt(5 + 1 + 5) - 5;
-				rulesMap.put(tokens[0], weigth);
-			}
-
-			bufferedReader.close();
-		} catch (FileNotFoundException ex) {
-			System.out.println("Unable to open file '" + "'");
-		} catch (IOException ex) {
-			System.out.println("Error reading file '");
-
-		}
-		return rulesMap;
+			return rulesMap;
 	}
-
-	public void saveRules(JTextArea area, JTextArea weight) {
+	
+	
+	public void WriterRules(JTextArea area, JTextArea weight, String rulesPath) {
 		java.util.List<String> rules;
 		java.util.List<String> values;
 		HashMap<String, Integer> rulesMap = new HashMap<String, Integer>();
@@ -90,14 +79,6 @@ public class ReadRules {
 			e.printStackTrace();
 		}
 
-	}
-
-	public String getRulesPath() {
-		return rulesPath;
-	}
-
-	public void setRulesPath(String rulesPath) {
-		this.rulesPath = rulesPath;
 	}
 
 }

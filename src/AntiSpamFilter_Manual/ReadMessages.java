@@ -19,11 +19,6 @@ public class ReadMessages {
 	private int FP;
 	private int FN;
 
-	public ReadMessages() {
-
-	}
-
-	
 	public static List<List<String>> lerSpam(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(fileName));
 		allMessageSPAM = new ArrayList<List<String>>();
