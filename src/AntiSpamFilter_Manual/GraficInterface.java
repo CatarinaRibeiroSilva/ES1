@@ -91,6 +91,12 @@ public class GraficInterface {
 			pane.setLeftComponent(areaManual);
 			pane.setRightComponent(weightManual);
 			
+		JPanel p = new JPanel(new BorderLayout());
+		p.setSize(200,200);
+		p.add(pane);
+		
+		
+		
 		
 			JLabel FP = new JLabel("Faldos Positivos:");
 			JTextField FPresult = new JTextField();
@@ -106,9 +112,9 @@ public class GraficInterface {
 			FResultes.add(FPresult);
 			FResultes.add(FN);
 			FResultes.add(FNresult);
+	        		
 			
-			
-			JScrollPane scroll2 = new JScrollPane(pane);
+			JScrollPane scroll2 = new JScrollPane(p);
 			scroll2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scroll2.setPreferredSize(new Dimension(300, 300));
 			 
