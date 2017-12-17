@@ -77,8 +77,9 @@ public class GraficInterface {
 		pathAndButton.add(gridPanelForTexts, BorderLayout.CENTER);
 		pathAndButton.add(gridPanelForButtons, BorderLayout.EAST);
 
-		// ManualMode
+		// ManualMode  
 		areaManual = new JTextArea();
+	
 		areaManual.setEditable(false);
 		areaManual.setBackground(Color.WHITE);
 
