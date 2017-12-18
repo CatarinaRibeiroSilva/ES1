@@ -11,13 +11,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.swing.JTextArea;
 
 public class ReadRules {
-	private Random random = new Random();
 	private HashMap<String, String> rulesMap;
 	public ArrayList<String> rulesList = new ArrayList<String>();
 	public ArrayList<String> weightList = new ArrayList<String>();
@@ -51,8 +50,8 @@ public class ReadRules {
 	
 	
 	public void WriterRules(JTextArea area, JTextArea weight, String rulesPath) {
-		java.util.List<String> rules;
-		java.util.List<String> values;
+		List<String> rules;
+		List<String> values;
 		HashMap<String, Integer> rulesMap = new HashMap<String, Integer>();
 		rules = Arrays.asList(area.getText().split("\n"));
 		values = Arrays.asList(weight.getText().split("\n"));

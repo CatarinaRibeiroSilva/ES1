@@ -242,12 +242,10 @@ public class GraficInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if(!hamTextField.getText().equals(""))
-						System.out.println("É NULLK");
 					readMessages.calcularFP(FPresult);
 
 					if(!spamTextField.getText().equals("")) {
-						System.out.println("SPAM FDP");
-						readMessages.calcularFN(FNresult);
+					readMessages.calcularFN(FNresult);
 					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -260,6 +258,7 @@ public class GraficInterface {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				readRules.WriterRules(areaManual, weightManual, readRules.getRulesPath());
+				System.out.println("regras gravadas....");
 			}
 		});
 
