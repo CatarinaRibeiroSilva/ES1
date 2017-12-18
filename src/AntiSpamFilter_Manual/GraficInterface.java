@@ -77,7 +77,7 @@ public class GraficInterface {
 		pathAndButton.add(gridPanelForTexts, BorderLayout.CENTER);
 		pathAndButton.add(gridPanelForButtons, BorderLayout.EAST);
 
-		// ManualMode  
+		// ManualMode
 		areaManual = new JTextArea();
 
 		areaManual.setEditable(false);
@@ -225,9 +225,14 @@ public class GraficInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					rulesTextField.setEditable(true);
-					String path = logic.getFile().getAbsolutePath();
-					rulesTextField.setText(path);
-					rules = readRules.read(path);
+					
+					
+						String path = logic.getFile().getAbsolutePath();
+						rulesTextField.setText(path);
+						rules = readRules.read(path);
+
+					
+
 					print(areaManual, weightManual);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -241,11 +246,11 @@ public class GraficInterface {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					if(!hamTextField.getText().equals(""))
-					readMessages.calcularFP(FPresult);
+					if (!hamTextField.getText().equals(""))
+						readMessages.calcularFP(FPresult);
 
-					if(!spamTextField.getText().equals("")) {
-					readMessages.calcularFN(FNresult);
+					if (!spamTextField.getText().equals("")) {
+						readMessages.calcularFN(FNresult);
 					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -253,7 +258,7 @@ public class GraficInterface {
 
 			}
 		});
-		
+
 		buttonGravar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -263,9 +268,6 @@ public class GraficInterface {
 		});
 
 	}
-	
-
-
 
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {

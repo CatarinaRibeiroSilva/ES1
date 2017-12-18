@@ -1,4 +1,4 @@
-package AntiSpamFilter_Manual;
+package AntiSpamFilter_Manual;   
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -61,7 +61,6 @@ public class ReadMessages {
 
 	public void calcularFN(JTextField tx) throws FileNotFoundException {
 
-		// fazer um if aqui para verificar se foi selecionado os files primeiro
 		FN = 0;
 		int soma;
 
@@ -83,7 +82,7 @@ public class ReadMessages {
 
 	public void calcularFP(JTextField tx) throws FileNotFoundException {
 
-		// fazer um if aqui para verificar se foi selecionado os files primeiro
+	
 
 		FP = 0;
 		System.out.println("maasassas: " + allMessageHam.size());
