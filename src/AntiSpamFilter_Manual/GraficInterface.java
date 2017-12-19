@@ -20,6 +20,9 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
+import antiSpamFilter.AntiSpamFilterProblem;
+
 
 public class GraficInterface {
 
@@ -44,7 +47,7 @@ public class GraficInterface {
 	public ReadRules readRules = new ReadRules();
 	private HashMap<String, String> rules;
 	private ReadMessages readMessages = new ReadMessages();
-
+	private AntiSpamFilterProblem antiSpamAuto;
 	public static String rulesPath;
 
 	public GraficInterface() {
@@ -266,8 +269,17 @@ public class GraficInterface {
 				System.out.println("regras gravadas....");
 			}
 		});
+		
+		buttonValidarAuto.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				antiSpamAuto.evaluate(solution);
+			}
+		});
 
 	}
+	
+	
 
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {
@@ -276,6 +288,11 @@ public class GraficInterface {
 			area1.setEditable(false);
 			area2.append(map.getValue().toString() + "\n");
 		}
-	}
+	
+
+}
+	
+	
+	
 
 }
