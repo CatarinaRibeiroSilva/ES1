@@ -279,7 +279,7 @@ public class GraficInterface {
 
 	}
 	
-	
+	/// 
 
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {
