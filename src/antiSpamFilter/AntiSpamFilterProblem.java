@@ -44,10 +44,10 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 		// usar só depois de mudar a estrutura do calculo do FP e FN
 		// readMessages.calcularFN();
 		// readMessages.calcularFP();
-		//
-		// int fp=get();
-		// int fn= get();
-		// solution.setObjective(0, fp);
-		// solution.setObjective(1, fn);
+		
+		int fp = readMessages.getFP();
+		int fn = readMessages.getFN();
+		solution.setObjective(0, fp);
+		solution.setObjective(1, fn);
 	}
 }
