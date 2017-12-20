@@ -29,7 +29,6 @@ public class GraficInterface {
 	private JButton buttonValidar;
 	private JButton buttonGravar;
 	private JButton buttonValidarAuto;
-	private JButton buttonGravarAuto;
 	public JTextArea areaManual;
 	public JTextArea weightManual;
 	public JTextArea areaAuto;
@@ -172,10 +171,8 @@ public class GraficInterface {
 		panelForTextAreaAuto.add(scrollAuto, BorderLayout.CENTER);
 
 		buttonValidarAuto = new JButton("Gerar");
-		buttonGravarAuto = new JButton("Gravar");
 		JPanel buttonsPanelAuto = new JPanel(new GridLayout(1, 2));
 		buttonsPanelAuto.add(buttonValidarAuto);
-		buttonsPanelAuto.add(buttonGravarAuto);
 
 		JPanel PanelAutoAll = new JPanel(new BorderLayout());
 		PanelAutoAll.add(panelForTextAreaAuto, BorderLayout.NORTH);
