@@ -12,10 +12,13 @@ public class LogicClass {
 	public File getFile() throws IOException {
 
 		JFileChooser chooser = new JFileChooser();
-		//perguntar a catarina sobre o returnVal:para qué que serve???
 		int returnVal = chooser.showOpenDialog(new JFrame());
 		return chooser.getSelectedFile();
 
+	}
+	
+	public void run(){
+		GraficInterface i = new GraficInterface();
 	}
 	
 }

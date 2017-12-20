@@ -46,7 +46,7 @@ public class GraficInterface {
 	public ReadRules readRules = new ReadRules();
 	private HashMap<String, String> rules;
 	private ReadMessages readMessages = new ReadMessages();
-	private AntiSpamFilterProblem antiSpamAuto;
+	private AntiSpamFilterAutomaticConfiguration antiSpamAuto;
 	public static String rulesPath;
 
 	public GraficInterface() {
@@ -269,7 +269,11 @@ public class GraficInterface {
 		buttonValidarAuto.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//antiSpamAuto.evaluate(solution);
+				try {
+					antiSpamAuto.main(null);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 

@@ -11,7 +11,7 @@ import AntiSpamFilter_Manual.ReadMessages;
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
 	  public AntiSpamFilterProblem() {
-	    // 10 variables (anti-spam filter rules) by default 
+	    // 335 variables (anti-spam filter rules) by default 
 	    this(335);
 	  }
 

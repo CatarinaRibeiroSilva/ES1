@@ -1,4 +1,4 @@
-package AntiSpamFilter_Manual;   
+package AntiSpamFilter_Manual;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +39,7 @@ public class ReadMessages {
 
 	}
 
+	// tem que ser alterado a estrutura desse método
 	public void lerHam(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(fileName));
 		allMessageHam = new ArrayList<List<String>>();
@@ -56,9 +57,10 @@ public class ReadMessages {
 			scanner.close();
 
 		}
-		
+
 	}
 
+	// tem que ser alterado a estrutura desse método
 	public void calcularFN(JTextField tx) throws FileNotFoundException {
 
 		FN = 0;
@@ -68,7 +70,6 @@ public class ReadMessages {
 			soma = 0;
 			for (int i = 1; i < allMessageSPAM.get(n).size(); i++) {
 				soma = getValueOfMap(readRulesAndValues(), allMessageSPAM.get(n).get(i)) + soma;
-				System.out.println(soma);
 			}
 
 			if (soma < 5) {
@@ -81,8 +82,6 @@ public class ReadMessages {
 	}
 
 	public void calcularFP(JTextField tx) throws FileNotFoundException {
-
-	
 
 		FP = 0;
 		System.out.println("maasassas: " + allMessageHam.size());
