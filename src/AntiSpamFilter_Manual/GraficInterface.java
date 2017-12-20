@@ -23,7 +23,6 @@ import javax.swing.ScrollPaneConstants;
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.AntiSpamFilterProblem;
 
-
 public class GraficInterface {
 
 	// Manual Mode
@@ -228,13 +227,10 @@ public class GraficInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					rulesTextField.setEditable(true);
-					
-					
-						String path = logic.getFile().getAbsolutePath();
-						rulesTextField.setText(path);
-						rules = readRules.read(path);
 
-					
+					String path = logic.getFile().getAbsolutePath();
+					rulesTextField.setText(path);
+					rules = readRules.read(path);
 
 					print(areaManual, weightManual);
 				} catch (IOException e) {
@@ -269,17 +265,17 @@ public class GraficInterface {
 				System.out.println("regras gravadas....");
 			}
 		});
-		
+
 		buttonValidarAuto.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				antiSpamAuto.evaluate(solution);
+				//antiSpamAuto.evaluate(solution);
 			}
 		});
 
 	}
+
 	
-	/// 
 
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {
@@ -288,11 +284,7 @@ public class GraficInterface {
 			area1.setEditable(false);
 			area2.append(map.getValue().toString() + "\n");
 		}
-	
 
-}
-	
-	
-	
+	}
 
 }
