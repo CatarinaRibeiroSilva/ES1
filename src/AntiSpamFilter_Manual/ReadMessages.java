@@ -148,11 +148,17 @@ public class ReadMessages {
 		}
 		System.out.println("Falsos Positivos-Ham : " + FP);
 	}
+	/**
+	 * return FP;
+	 */
 
 	public int getFP() {
 		return FP;
 	}
 
+	/**
+	 * return FN;
+	 */
 	public int getFN() {
 		return FN;
 	}
