@@ -50,36 +50,36 @@ public class GraficInterface {
 
 	public GraficInterface() {
 		JFrame janela = new JFrame("Spam Filter Manual");
-
-		// Textfield To show Path
+		
+		/** This is the TextField to show the path of selected file*/
 		spamTextField = new JTextField();
 		hamTextField = new JTextField();
 		rulesTextField = new JTextField();
 		readMessages = new ReadMessages();
 
-		// Panel show Path
+		/** This is the panel to add all the TextFields to show the path of selecteds files*/
 		JPanel gridPanelForTexts = new JPanel(new GridLayout(3, 1));
 		gridPanelForTexts.add(rulesTextField);
 		gridPanelForTexts.add(hamTextField);
 		gridPanelForTexts.add(spamTextField);
 
-		// Button to selectFiles and Path
+		/** This is the buttons to select all files that system needs*/
 		pathToSpamButton = new JButton("Select Spam file");
 		pathToHamButton = new JButton("Select Ham file");
 		pathToRulesButton = new JButton("Select Rules file");
 
-		// Panel to select Path and Files
+		/** This is the panel to add all buttons to select files*/
 		JPanel gridPanelForButtons = new JPanel(new GridLayout(3, 1));
 		gridPanelForButtons.add(pathToRulesButton);
 		gridPanelForButtons.add(pathToHamButton);
 		gridPanelForButtons.add(pathToSpamButton);
 
-		// Panel For TextField and Buttons - Path
+		/** This is the panel to add all buttons and textfield*/
 		JPanel pathAndButton = new JPanel(new BorderLayout());
 		pathAndButton.add(gridPanelForTexts, BorderLayout.CENTER);
 		pathAndButton.add(gridPanelForButtons, BorderLayout.EAST);
 
-		// ManualMode
+		/** All elements that Manual Mode needs to show the result to user*/
 		areaManual = new JTextArea();
 
 		areaManual.setEditable(false);
@@ -133,7 +133,7 @@ public class GraficInterface {
 		PanelManualAll.add(buttonsPanel, BorderLayout.SOUTH);
 		PanelManualAll.add(FResultes, BorderLayout.CENTER);
 
-		// ManualMode
+		
 		areaAuto = new JTextArea();
 		areaAuto.setEditable(false);
 		areaAuto.setBackground(Color.WHITE);
@@ -141,7 +141,8 @@ public class GraficInterface {
 		weigthtAuto = new JTextArea();
 		weigthtAuto.setEditable(true);
 		weigthtAuto.setBackground(Color.WHITE);
-
+		
+		/** all elements that the AutomaticMode needs to  show the result*/
 		JSplitPane paneAuto = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		paneAuto.setDividerSize(1);
 		paneAuto.setDividerLocation(200);
@@ -180,6 +181,7 @@ public class GraficInterface {
 		PanelAutoAll.add(buttonsPanelAuto, BorderLayout.SOUTH);
 		PanelAutoAll.add(FResultesAuto, BorderLayout.CENTER);
 
+		/** windowns add all panels to view*/
 		janela.setSize(650, 500);
 		janela.setResizable(false);
 		janela.setLocation(100, 100);
@@ -189,6 +191,7 @@ public class GraficInterface {
 		janela.add(PanelAutoAll, BorderLayout.EAST);
 		janela.setVisible(true);
 
+		/** ActionListeners to select files */
 		pathToSpamButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -240,6 +243,7 @@ public class GraficInterface {
 			}
 		});
 
+		/** ActionListeners manual mode needs */
 		buttonValidar.addActionListener(new ActionListener() {
 
 			@Override
@@ -265,6 +269,7 @@ public class GraficInterface {
 				System.out.println("regras gravadas....");
 			}
 		});
+		/** ActionListeners that Automatic mode needs */
 
 		buttonValidarAuto.addActionListener(new ActionListener() {
 			@Override
@@ -282,7 +287,7 @@ public class GraficInterface {
 	}
 
 
-
+	/** print th rules in textAreas */
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {
 			area1.setEditable(true);

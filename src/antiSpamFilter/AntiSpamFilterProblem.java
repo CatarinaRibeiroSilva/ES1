@@ -34,6 +34,8 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 		setUpperLimit(upperLimit);
 	}
 
+	/** this method invoc readMessages to read, invoc
+	 *  CalcularFNAuto and CalcularFPAuto for the Automatic mode */
 	public void evaluate(DoubleSolution solution) {
 
 		double[] x = new double[getNumberOfVariables()];
