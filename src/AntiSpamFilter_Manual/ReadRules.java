@@ -21,34 +21,40 @@ public class ReadRules {
 	public ArrayList<String> rulesList = new ArrayList<String>();
 	public ArrayList<String> weightList = new ArrayList<String>();
 	private static String rulesPath;
-	
-	
-	public HashMap<String, String> read(String path) throws FileNotFoundException {
-		rulesPath= path;	
-		String line;
-			FileReader reader = new FileReader(path);
-			rulesMap = new HashMap<String, String>();
-			BufferedReader in= new BufferedReader(reader);		
-			try {
-				while ((line = in.readLine()) != null) {
-					String[] tokens = line.split("	");
-					String rule = tokens[0];
-					String weight = tokens[1];
-				
-					rulesMap.put(rule,weight);
-				}
-				
-				in.close();
-			} catch (FileNotFoundException ex) {
-				System.out.println("Unable to open file '" + "'");
-			} catch (IOException ex) {
-				System.out.println("Error reading file '");
 
+	/**
+	 * Depois de ter recebido o nome do arquivo de regras, adicionado como regras e os pesos.
+	 * Retorna um hashMap com as regras como valores e valores como peso.
+	 * 
+	 */
+	public HashMap<String, String> read(String path) throws FileNotFoundException {
+		rulesPath = path;
+		String line;
+		FileReader reader = new FileReader(path);
+		rulesMap = new HashMap<String, String>();
+		BufferedReader in = new BufferedReader(reader);
+		try {
+			while ((line = in.readLine()) != null) {
+				String[] tokens = line.split("	");
+				String rule = tokens[0];
+				String weight = tokens[1];
+
+				rulesMap.put(rule, weight);
 			}
-			return rulesMap;
+
+			in.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("Unable to open file '" + "'");
+		} catch (IOException ex) {
+			System.out.println("Error reading file '");
+
+		}
+		return rulesMap;
 	}
-	
-	
+
+	/**
+	 * This method is used to save as rules after they have been changed
+	 */
 	public void WriterRules(JTextArea area, JTextArea weight, String rulesPath) {
 		List<String> rules;
 		List<String> values;
@@ -80,7 +86,11 @@ public class ReadRules {
 		}
 
 	}
-	
+
+	/**
+	 * return rulesPath
+	 * 
+	 */
 	public String getRulesPath() {
 		return rulesPath;
 	}
