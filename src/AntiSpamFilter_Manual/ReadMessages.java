@@ -19,6 +19,13 @@ public class ReadMessages {
 	private int FP;
 	private int FN;
 
+	
+	
+	/**
+	 * This method after entering the filename, in which case it is the Spam file.
+	 *It reads each line of the file and adds the contents of each line to an array, 
+	 *and through all those array will be added another array designated by allMessageHam. 
+	*/
 	public void lerSpam(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(fileName));
 		allMessageSPAM = new ArrayList<List<String>>();
@@ -38,6 +45,14 @@ public class ReadMessages {
 		}
 
 	}
+	
+	
+	
+	/**
+	 * This method after entering the filename, in which case it is the Ham file.
+	 *It reads each line of the file and adds the contents of each line to an array, 
+	 *and through all those array will be added another array designated by allMessageSpam. 
+	*/
 	
 	public void lerHam(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(fileName));
@@ -59,6 +74,10 @@ public class ReadMessages {
 
 	}
 
+	/**
+	 * In this method it calculates the FN
+	 *
+	 */
 	public void calcularFN(JTextField tx) throws FileNotFoundException {
 
 		FN = 0;
@@ -79,7 +98,10 @@ public class ReadMessages {
 		System.out.println("Falsos Negativos-Spam : " + FN);
 	}
 
-	
+	/**
+	 * In this method it calculates the FP for the Automatic part
+	 * 
+	 */
 	public int calcularFNAuto(double[] x) throws FileNotFoundException {
 
 		FN = 0;
@@ -105,7 +127,9 @@ public class ReadMessages {
 	}
 
 	
-	
+	/**
+	 * In this method it calculates the FP
+	 */
 	public void calcularFP(JTextField tx) throws FileNotFoundException {
 
 		FP = 0;
@@ -133,6 +157,11 @@ public class ReadMessages {
 		return FN;
 	}
 
+	
+	/**
+	 * 
+	 *In this method it calculates the FN for the Automatic part
+	 */
 	public int calcularFPAuto(double[] x) throws FileNotFoundException {
 
 		FN = 0;
@@ -157,7 +186,10 @@ public class ReadMessages {
 		}
 		return soma;
 	}
-
+/**
+ * With this method you get the values ​​of the existing weight in the file Rules
+ *
+ */
 	public int getValueOfMap(Map<String, Integer> rulesMap, String key) {
 		for (Map.Entry<String, Integer> map : rulesMap.entrySet()) {
 			if (map.getKey().equals(key)) {
@@ -167,6 +199,10 @@ public class ReadMessages {
 		return 0;
 	}
 
+	
+	/**
+	 * This method is used to read the Rules file
+	 */
 	public HashMap<String, Integer> readRulesAndValues() throws FileNotFoundException {
 		HashMap<String, Integer> map = new HashMap<>();
 		ReadRules rRules = new ReadRules();
@@ -183,11 +219,15 @@ public class ReadMessages {
 		}
 		return map;
 	}
-
+/**
+ * return rulesPath
+ */
 	public String getRulesPath() {
 		return rulesPath;
 	}
-
+	/**
+	 *edit rulesPath
+	 */
 	public void setRulesPath(String rulesPath) {
 		this.rulesPath = rulesPath;
 	}
