@@ -1,9 +1,12 @@
-Identificação da turma (ex: EIC1)
+Identificação da turma Es-2017-METI-PL-111
+                        
 
-Identificação do grupo (ex: Grupo 2)
+Identificação do grupo 111
+Constituido por: Adaizilson Amado 65250 (Developer)
+                 Catarina Silva 60676 (SCRUM Master)
+                 Keven Andrade  70228 (Developer)
+                 Kankho Barros 69651 (Quality assurence)
 
-Identificação do número, nome e papel de cada membro do grupo (ex: 12345, José Silva, Scrum Master)
+Identificação da variante do projeto desenvolvida "AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox"
 
-Identificação da variante do projeto desenvolvida (ex: AntiSpamConfigurationForProfessionalMailbox)
-
-Link para um vídeo no youtube com a demonstração da aplicação final desenvolvida (ex: http://...)
+https://youtu.be/Pw-RGrgOcYI
