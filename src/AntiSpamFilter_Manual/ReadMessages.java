@@ -38,8 +38,7 @@ public class ReadMessages {
 		}
 
 	}
-
-	// tem que ser alterado a estrutura desse método
+	
 	public void lerHam(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(fileName));
 		allMessageHam = new ArrayList<List<String>>();
@@ -60,7 +59,6 @@ public class ReadMessages {
 
 	}
 
-	// tem que ser alterado a estrutura desse método
 	public void calcularFN(JTextField tx) throws FileNotFoundException {
 
 		FN = 0;
@@ -81,6 +79,33 @@ public class ReadMessages {
 		System.out.println("Falsos Negativos-Spam : " + FN);
 	}
 
+	
+	public int calcularFNAuto(double[] x) throws FileNotFoundException {
+
+		FN = 0;
+		int soma=0;;
+		int a=0;
+		Map<String, Integer> map= readRulesAndValues();
+		Map<String, Integer> new_map = new HashMap<String, Integer>();
+		for(String rule: map.keySet()) {
+			new_map.put(rule, (int)x[a]);
+			a++;
+		}
+		for (int n = 0; n < allMessageSPAM.size(); n++) {
+			soma = 0;
+			for (int i = 1; i < allMessageSPAM.get(n).size(); i++) {
+				soma = getValueOfMap(new_map, allMessageSPAM.get(n).get(i)) + soma;
+			}
+
+			if (soma < 5) {
+				FN++;
+			}
+		}
+		return soma;
+	}
+
+	
+	
 	public void calcularFP(JTextField tx) throws FileNotFoundException {
 
 		FP = 0;
@@ -108,7 +133,32 @@ public class ReadMessages {
 		return FN;
 	}
 
-	public int getValueOfMap(HashMap<String, Integer> rulesMap, String key) {
+	public int calcularFPAuto(double[] x) throws FileNotFoundException {
+
+		FN = 0;
+		int soma=0;;
+		int a=0;
+		Map<String, Integer> map= readRulesAndValues();
+		Map<String, Integer> new_map = new HashMap<String, Integer>();
+		for(String rule: map.keySet()) {
+			new_map.put(rule, (int)x[a]);
+			a++;
+		}
+
+		for (int n = 0; n < allMessageHam.size(); n++) {
+			soma = 0;
+			for (int i = 1; i < allMessageHam.get(n).size(); i++) {
+				soma = getValueOfMap(new_map, allMessageHam.get(n).get(i)) + soma;
+			}
+
+			if (soma < 5) {
+				FN++;
+			}
+		}
+		return soma;
+	}
+
+	public int getValueOfMap(Map<String, Integer> rulesMap, String key) {
 		for (Map.Entry<String, Integer> map : rulesMap.entrySet()) {
 			if (map.getKey().equals(key)) {
 				return map.getValue();

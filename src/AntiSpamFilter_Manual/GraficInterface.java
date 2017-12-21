@@ -44,7 +44,7 @@ public class GraficInterface {
 	public LogicClass logic = new LogicClass();
 	public ReadRules readRules = new ReadRules();
 	private HashMap<String, String> rules;
-	private ReadMessages readMessages = new ReadMessages();
+	public static ReadMessages readMessages;
 	private AntiSpamFilterAutomaticConfiguration antiSpamAuto;
 	public static String rulesPath;
 
@@ -55,6 +55,7 @@ public class GraficInterface {
 		spamTextField = new JTextField();
 		hamTextField = new JTextField();
 		rulesTextField = new JTextField();
+		readMessages = new ReadMessages();
 
 		// Panel show Path
 		JPanel gridPanelForTexts = new JPanel(new GridLayout(3, 1));
@@ -196,6 +197,7 @@ public class GraficInterface {
 					String path = logic.getFile().getAbsolutePath();
 					spamTextField.setText(path);
 					readMessages.lerSpam(path);
+					System.out.println("hey");
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -212,6 +214,7 @@ public class GraficInterface {
 					String path = logic.getFile().getAbsolutePath();
 					hamTextField.setText(path);
 					readMessages.lerHam(path);
+					System.out.println("hey hey");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -267,7 +270,9 @@ public class GraficInterface {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					antiSpamAuto.main(null);
+					if (!hamTextField.getText().equals("") && !spamTextField.getText().equals("")) {
+						AntiSpamFilterAutomaticConfiguration.start();
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -276,7 +281,7 @@ public class GraficInterface {
 
 	}
 
-	
+
 
 	public void print(JTextArea area1, JTextArea area2) {
 		for (Map.Entry<String, String> map : rules.entrySet()) {
